@@ -13,6 +13,12 @@ config_version=5
 config/name="GameJam"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 
+[display]
+
+window/size/viewport_width=650
+window/size/viewport_height=350
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="GameJam"
