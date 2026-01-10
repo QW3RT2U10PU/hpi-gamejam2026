@@ -26,6 +26,10 @@ public partial class Level : Node2D
 
 	public void StartDialogue(Dialogue dialogue)
 	{
-		//TODO dialogue type and do sth
+		//TODO dialogue ui
+		foreach (string s in dialogue)
+		{
+			GD.Print(s);
+		}
 	}
 }
