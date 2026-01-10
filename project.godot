@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="GameJam"
+run/main_scene="res://src/levels/test1Room.tscn"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 
 [display]
 
-window/size/viewport_width=650
-window/size/viewport_height=350
+window/size/viewport_width=512
+window/size/viewport_height=288
 window/stretch/mode="viewport"
 
 [dotnet]
