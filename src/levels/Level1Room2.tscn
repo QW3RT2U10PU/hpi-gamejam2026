@@ -2332,13 +2332,9 @@ tile_map_data = PackedByteArray("AAABAAgAAQAKAAkAAAAAAAgAAQAKAA4AAFAeAAsAAQAMABQ
 position = Vector2(10, 178)
 
 [node name="Background" parent="." index="3"]
+texture_repeat = 2
 position = Vector2(-1, 0)
 scale = Vector2(1.4215643, 1.2006174)
 texture = ExtResource("5_hwerm")
-
-[node name="Background" type="Sprite2D" parent="Background" index="0"]
-z_index = -1
-position = Vector2(576.82935, 15.825191)
-scale = Vector2(1.0311149, 0.73264766)
-texture = ExtResource("5_hwerm")
-centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1172, 300)
