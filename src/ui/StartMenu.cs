@@ -15,7 +15,8 @@ public partial class StartMenu : HBoxContainer
 
 	public void StartGame()
 	{
-		GetTree().ChangeSceneToFile("uid://c127jfuaaw3om");
+		// res://src/levels/Level1Room1.tscn
+		GetTree().ChangeSceneToFile("uid://bfpu7cdwgvy54");
 	}
 	public void QuitGame()
 	{

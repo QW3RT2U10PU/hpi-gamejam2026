@@ -22,7 +22,6 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		GD.Print(dashState);
 		Timer dashTimer = GetNode<Timer>("dashTimer");
 		Timer dashCooldown = GetNode<Timer>("dashCooldown");
 		Vector2 velocity = Velocity;
