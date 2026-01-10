@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvnu0kupu7eqa"
-path="res://.godot/imported/spr_torch.png-5428f5e99a00c2839618d6e0e3aa9082.ctex"
+uid="uid://caoq2e3sv7cg5"
+path="res://.godot/imported/ironmaiden1.png-1f33686d5911f2905d6d84d03c64b87e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/spr_torch.png"
-dest_files=["res://.godot/imported/spr_torch.png-5428f5e99a00c2839618d6e0e3aa9082.ctex"]
+source_file="res://res/levels/bg/ironmaiden1.png"
+dest_files=["res://.godot/imported/ironmaiden1.png-1f33686d5911f2905d6d84d03c64b87e.ctex"]
 
 [params]
 

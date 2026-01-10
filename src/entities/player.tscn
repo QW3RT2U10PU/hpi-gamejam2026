@@ -4,17 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://bukqbasjprqww" path="res://res/player.png" id="2_gmfve"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehvfd"]
-size = Vector2(15.9, 15.9)
+size = Vector2(15.9, 30.95)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_lowyb")
 Speed = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.525)
 shape = SubResource("RectangleShape2D_ehvfd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+scale = Vector2(1, 2)
 texture = ExtResource("2_gmfve")
 
 [node name="dashTimer" type="Timer" parent="."]

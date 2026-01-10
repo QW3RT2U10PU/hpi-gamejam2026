@@ -1,9 +1,12 @@
-using Godot;
 using System;
+
+namespace GameJam;
+
+using Godot;
 
 public partial class Player : CharacterBody2D
 {
-	public static PackedScene Scene {get;} = GD.Load<PackedScene>("uid://l5ejvbu0pwmb");
+	public static PackedScene Scene { get; } = GD.Load<PackedScene>("uid://l5ejvbu0pwmb");
 
 	[Export]
 	public float Speed {get; set;} = 300.0f;
@@ -16,7 +19,9 @@ public partial class Player : CharacterBody2D
 	public float DashSpeed {get; set;} = 3f;
 
 	[Export]
-	public float JumpStrength {get; set;} = 400.0f;
+	public float JumpStrength {get; set;} = 400f;
+
+	[Export] public float AirDrag { get; set; } = 1.7f;
 
 	[Export] public double CoyoteTime {get; set;} = 0.08;
 	private double remainingCoyoteTime = 0;
@@ -26,7 +31,6 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		GD.Print(dashState);
 		Timer dashTimer = GetNode<Timer>("dashTimer");
 		Timer dashCooldown = GetNode<Timer>("dashCooldown");
 
@@ -39,8 +43,9 @@ public partial class Player : CharacterBody2D
 		
 		Vector2 velocity = Velocity;
 		velocity.X = direction.X * Speed;
-		
-		if(Input.IsActionJustPressed("dash") && dashState == 0) {
+
+		if (Input.IsActionJustPressed("dash") && dashState == 0)
+		{
 			dashTimer.Start();
 			dashCooldown.Start();
 			dashState = DashState.ACTIVE;
@@ -92,15 +97,15 @@ public partial class Player : CharacterBody2D
 
 	public void DashCooldownExpired()
 	{
-		dashState &= ~DashState.COOLDOWN; 
+		dashState &= ~DashState.COOLDOWN;
 	}
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("interact"))
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("interact"))
 		{
 			GetViewport().SetInputAsHandled();
 			Interactable.FocusedInteractable?.Interact(Interactable.FocusedInteractableBody);
 		}
-    }
+	}
 }
