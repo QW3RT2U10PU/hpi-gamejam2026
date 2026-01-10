@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://c127jfuaaw3om"]
+[gd_scene load_steps=8 format=4 uid="uid://c127jfuaaw3om"]
 
 [ext_resource type="Texture2D" uid="uid://bukqbasjprqww" path="res://res/player.png" id="1_hd15c"]
 [ext_resource type="PackedScene" uid="uid://l5ejvbu0pwmb" path="res://src/player.tscn" id="2_1oidb"]
 [ext_resource type="Script" uid="uid://b4li7i3ta1kjv" path="res://src/levels/Level.cs" id="2_yir0g"]
 [ext_resource type="Texture2D" uid="uid://c58vypxqscl7o" path="res://res/New free backgrounds part5/background 1/orig_big.png" id="4_58cis"]
+[ext_resource type="PackedScene" uid="uid://dhllw4yhaj0k8" path="res://src/ui/pausemenu.tscn" id="5_kxofx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1oidb"]
 texture = ExtResource("1_hd15c")
@@ -27,3 +28,8 @@ position = Vector2(164, 60)
 z_index = -1
 texture = ExtResource("4_58cis")
 centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_kxofx")]
+visible = false
