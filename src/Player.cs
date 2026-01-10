@@ -33,4 +33,13 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("interact"))
+		{
+			GetViewport().SetInputAsHandled();
+			Interactable.FocusedInteractable?.Interact(Interactable.FocusedInteractableBody);
+		}
+    }
 }
