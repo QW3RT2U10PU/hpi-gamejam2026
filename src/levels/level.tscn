@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://fl2cgb3q10ki" path="res://res/levels/blahaj.png" id="5_dv8wo"]
 [ext_resource type="Texture2D" uid="uid://grgne3mlm4hb" path="res://res/The Sidescroller's Dungeon Tiles 16x16.png" id="6_2tyx5"]
 [ext_resource type="Texture2D" uid="uid://bb5jsahwfbq3h" path="res://res/levels/Plan 3.png" id="7_54iga"]
+[ext_resource type="PackedScene" uid="uid://lfw8mch3f8vq" path="res://src/ui/DialogueContainer.tscn" id="5_8tcek"]
+[ext_resource type="PackedScene" uid="uid://dhllw4yhaj0k8" path="res://src/ui/pauseMenu.tscn" id="5_kxofx"]
 [ext_resource type="Texture2D" uid="uid://dk36lqk0p2820" path="res://res/Tilesetv3.png" id="8_m3sl2"]
 [ext_resource type="Texture2D" uid="uid://ddvwa4yckysw0" path="res://res/Assets.png" id="9_du6bw"]
 
@@ -4905,6 +4907,7 @@ script = ExtResource("2_8tcek")
 
 [node name="Map" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_yir0g")
 
 [node name="Player" parent="." instance=ExtResource("3_deqfd")]
@@ -4915,3 +4918,11 @@ position = Vector2(164, 60)
 z_index = -1
 texture = ExtResource("4_dv8wo")
 centered = false
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="DialogueContainer" parent="HUD" instance=ExtResource("5_8tcek")]
+unique_name_in_owner = true
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource("5_kxofx")]
+visible = false

@@ -55,15 +55,6 @@ public partial class Player : CharacterBody2D
 		{
 			velocity.Y = 0;
 		}
-			
-		
-
-		
-
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		
 		
 		if (direction.Y < 0 && IsOnFloor())
 		{
@@ -73,6 +64,7 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
 	public void DashExpired()
 	{
 		dashState = DashState.COOLDOWN | DashState.NEEDS_FLOOR;
@@ -82,4 +74,13 @@ public partial class Player : CharacterBody2D
 	{
 		dashState &= ~DashState.COOLDOWN; 
 	}
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("interact"))
+		{
+			GetViewport().SetInputAsHandled();
+			Interactable.FocusedInteractable?.Interact(Interactable.FocusedInteractableBody);
+		}
+    }
 }
