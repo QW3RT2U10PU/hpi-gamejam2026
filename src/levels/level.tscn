@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://c127jfuaaw3om"]
+[gd_scene load_steps=19 format=4 uid="uid://c127jfuaaw3om"]
 
 [ext_resource type="Texture2D" uid="uid://bukqbasjprqww" path="res://res/player.png" id="1_7umm5"]
 [ext_resource type="Script" uid="uid://b4li7i3ta1kjv" path="res://src/levels/Level.cs" id="2_8tcek"]
@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://boxa8erreu3fb" path="res://res/levels/main_lev_build.png" id="3_dv8wo"]
 [ext_resource type="Texture2D" uid="uid://b1en3upy6pbns" path="res://res/levels/other_and_decorative.png" id="4_2tyx5"]
 [ext_resource type="Texture2D" uid="uid://c58vypxqscl7o" path="res://res/New free backgrounds part5/background 1/orig_big.png" id="4_dv8wo"]
+[ext_resource type="PackedScene" uid="uid://lfw8mch3f8vq" path="res://src/ui/DialogueContainer.tscn" id="5_8tcek"]
 [ext_resource type="Texture2D" uid="uid://fl2cgb3q10ki" path="res://res/levels/blahaj.png" id="5_dv8wo"]
+[ext_resource type="PackedScene" uid="uid://dhllw4yhaj0k8" path="res://src/ui/pauseMenu.tscn" id="5_kxofx"]
 [ext_resource type="Texture2D" uid="uid://grgne3mlm4hb" path="res://res/The Sidescroller's Dungeon Tiles 16x16.png" id="6_2tyx5"]
 [ext_resource type="Texture2D" uid="uid://bb5jsahwfbq3h" path="res://res/levels/Plan 3.png" id="7_54iga"]
-[ext_resource type="PackedScene" uid="uid://lfw8mch3f8vq" path="res://src/ui/DialogueContainer.tscn" id="5_8tcek"]
-[ext_resource type="PackedScene" uid="uid://dhllw4yhaj0k8" path="res://src/ui/pauseMenu.tscn" id="5_kxofx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1oidb"]
 texture = ExtResource("1_7umm5")
@@ -3996,7 +3996,7 @@ texture = ExtResource("7_54iga")
 35:18/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_yir0g"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_1oidb")
 sources/1 = SubResource("TileSetAtlasSource_54iga")
 sources/2 = SubResource("TileSetAtlasSource_idw2h")
@@ -4018,6 +4018,7 @@ position = Vector2(164, 60)
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
+position = Vector2(-32, -27)
 texture = ExtResource("4_dv8wo")
 centered = false
 
