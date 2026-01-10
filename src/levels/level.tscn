@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c127jfuaaw3om"]
+[gd_scene load_steps=13 format=4 uid="uid://c127jfuaaw3om"]
 
 [ext_resource type="Texture2D" uid="uid://bukqbasjprqww" path="res://res/player.png" id="1_7umm5"]
 [ext_resource type="Script" uid="uid://b4li7i3ta1kjv" path="res://src/levels/Level.cs" id="2_8tcek"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c58vypxqscl7o" path="res://res/New free backgrounds part5/background 1/orig_big.png" id="4_dv8wo"]
 [ext_resource type="PackedScene" uid="uid://lfw8mch3f8vq" path="res://src/ui/DialogueContainer.tscn" id="5_8tcek"]
 [ext_resource type="PackedScene" uid="uid://dhllw4yhaj0k8" path="res://src/ui/pausemenu.tscn" id="5_kxofx"]
+[ext_resource type="Script" uid="uid://ct83tsg62bf47" path="res://src/entities/Dialogue.cs" id="7_2tyx5"]
+[ext_resource type="Script" uid="uid://bj5r16otyk2oy" path="res://src/entities/Npc.cs" id="7_54iga"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1oidb"]
 texture = ExtResource("1_7umm5")
@@ -16,11 +18,19 @@ texture = ExtResource("1_7umm5")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1oidb")
 
+[sub_resource type="Resource" id="Resource_idw2h"]
+script = ExtResource("7_2tyx5")
+lines = Array[String](["Hello World", "I will despawn"])
+metadata/_custom_type_script = "uid://ct83tsg62bf47"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tyx5"]
+
 [node name="Level" type="Node2D"]
 script = ExtResource("2_8tcek")
 
 [node name="Map" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_yir0g")
 
 [node name="Player" parent="." instance=ExtResource("3_deqfd")]
@@ -39,3 +49,13 @@ unique_name_in_owner = true
 
 [node name="PauseMenu" parent="HUD" instance=ExtResource("5_kxofx")]
 visible = false
+
+[node name="Npc" type="Area2D" parent="."]
+position = Vector2(164, 106)
+script = ExtResource("7_54iga")
+NpcDialogue = SubResource("Resource_idw2h")
+metadata/_custom_type_script = "uid://bj5r16otyk2oy"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Npc"]
+shape = SubResource("RectangleShape2D_2tyx5")

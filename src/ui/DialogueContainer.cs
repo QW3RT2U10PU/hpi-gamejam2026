@@ -37,9 +37,10 @@ public partial class DialogueContainer : PanelContainer
 
   public override void _Input(InputEvent @event)
   {
-	  if (@event.IsActionPressed("ui_accept"))
+	  if (@event.IsActionPressed("interact"))
 	  {
       NextLine();
+      GetViewport().SetInputAsHandled();
 	  }
   }
 }
