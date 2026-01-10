@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://c127jfuaaw3om"]
+[gd_scene load_steps=11 format=4 uid="uid://c127jfuaaw3om"]
 
 [ext_resource type="Texture2D" uid="uid://bukqbasjprqww" path="res://res/player.png" id="1_7umm5"]
 [ext_resource type="Script" uid="uid://b4li7i3ta1kjv" path="res://src/levels/Level.cs" id="2_8tcek"]
 [ext_resource type="PackedScene" uid="uid://l5ejvbu0pwmb" path="res://src/player.tscn" id="3_deqfd"]
 [ext_resource type="Texture2D" uid="uid://c58vypxqscl7o" path="res://res/New free backgrounds part5/background 1/orig_big.png" id="4_dv8wo"]
-[ext_resource type="PackedScene" uid="uid://lfw8mch3f8vq" path="res://src/ui/NPCtext.tscn" id="5_8tcek"]
+[ext_resource type="PackedScene" uid="uid://lfw8mch3f8vq" path="res://src/ui/DialogueContainer.tscn" id="5_8tcek"]
+[ext_resource type="PackedScene" uid="uid://uqw2ly1qlsq4" path="res://src/entities/npc.tscn" id="6_dv8wo"]
+[ext_resource type="Script" uid="uid://ct83tsg62bf47" path="res://src/entities/Dialogue.cs" id="7_2tyx5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1oidb"]
 texture = ExtResource("1_7umm5")
@@ -14,6 +16,11 @@ texture = ExtResource("1_7umm5")
 [sub_resource type="TileSet" id="TileSet_yir0g"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1oidb")
+
+[sub_resource type="Resource" id="Resource_54iga"]
+script = ExtResource("7_2tyx5")
+lines = Array[String](["Hello World", "Line 2", "Is this disappearing now?"])
+metadata/_custom_type_script = "uid://ct83tsg62bf47"
 
 [node name="Level" type="Node2D"]
 script = ExtResource("2_8tcek")
@@ -32,8 +39,11 @@ z_index = -1
 texture = ExtResource("4_dv8wo")
 centered = false
 
-[node name="NPCText" parent="." instance=ExtResource("5_8tcek")]
-offset_left = 537.0
-offset_top = 399.0
-offset_right = 538.0
-offset_bottom = 399.0
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="DialogueContainer" parent="HUD" instance=ExtResource("5_8tcek")]
+unique_name_in_owner = true
+
+[node name="Npc" parent="." instance=ExtResource("6_dv8wo")]
+position = Vector2(327, 74)
+NpcDialogue = SubResource("Resource_54iga")

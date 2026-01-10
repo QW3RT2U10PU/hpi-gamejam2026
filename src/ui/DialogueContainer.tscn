@@ -1,8 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://lfw8mch3f8vq"]
 
-[ext_resource type="Script" uid="uid://diih7306ow7xu" path="res://src/ui/NPCText.cs" id="1_cmm1t"]
+[ext_resource type="Script" uid="uid://diih7306ow7xu" path="res://src/ui/DialogueContainer.cs" id="1_cmm1t"]
 
-[node name="NPCText" type="PanelContainer"]
+[node name="DialogueContainer" type="PanelContainer"]
+process_mode = 4
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,7 +13,8 @@ grow_vertical = 2
 pivot_offset = Vector2(289, 249)
 script = ExtResource("1_cmm1t")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Text" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 horizontal_alignment = 1

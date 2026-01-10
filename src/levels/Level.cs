@@ -26,10 +26,6 @@ public partial class Level : Node2D
 
 	public void StartDialogue(Dialogue dialogue)
 	{
-		//TODO dialogue ui
-		foreach (string s in dialogue)
-		{
-			GD.Print(s);
-		}
+		GetNode<DialogueContainer>("%DialogueContainer").CurrentDialogue = dialogue;
 	}
 }
