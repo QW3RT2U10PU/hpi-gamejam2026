@@ -7,6 +7,6 @@ public partial class SceneSwitcher : Interactable
 
 	public override void Interact(Node body)
 	{
-		GetTree().ChangeSceneToFile(Loads);
+		GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, Loads);
 	}
 }
