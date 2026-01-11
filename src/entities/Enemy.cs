@@ -1,3 +1,4 @@
+using GameJam;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,6 @@ public partial class Enemy : Npc
 		if (dialogues.MoveNext())
 		{
 			GD.Print("Attack");
-			Interaction = InteractionType.NEVER;
 			attacking = true;
 			queuedAttacks = 0;
 			GetTree().CreateTimer(AttackTime).Timeout += EndAttack;
@@ -65,14 +65,18 @@ public partial class Enemy : Npc
         base._Process(delta);
 
 		if (attacking) {
+			Interaction = InteractionType.NEVER;
+			if (Interactable.FocusedInteractable == this && FocusedInteractableBody is Player plr) plr.NotifyInteractable(false);
 			queuedAttacks += delta * AttackSpeed;
 			for (; queuedAttacks >= 1; queuedAttacks--)
 			{
 				GD.Print("Projectile");
-				Vector2 direction = Vector2.Up.Rotated(Random.Shared.NextSingle() * (float) Math.PI * 2);
+				float rotation = Random.Shared.NextSingle() * (float) Math.PI * 2;
+				Vector2 direction = Vector2.Right.Rotated(rotation);
 				Projectile p = SpawnsProjectile.Instantiate<Projectile>();
 				p.Position = direction * SpawnRadius;
 				p.Velocity = -direction * p.Speed;
+				p.Rotation = rotation;
 				AddChild(p);
 			}
 		}

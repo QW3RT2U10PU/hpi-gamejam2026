@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dk36lqk0p2820" path="res://res/assets/Darkest Dungeon.png" id="8_m3sl2"]
 [ext_resource type="Texture2D" uid="uid://ddvwa4yckysw0" path="res://res/assets/Generic Dungeon.png" id="9_du6bw"]
 [ext_resource type="Texture2D" uid="uid://caoq2e3sv7cg5" path="res://res/levels/bg/ironmaiden1.png" id="10_rgvsn"]
-[ext_resource type="Script" uid="uid://cty3hk6goownu" path="res://src/entities/sampler.gd" id="14_rgvsn"]
+[ext_resource type="Script" path="res://src/entities/sampler.gd" id="14_rgvsn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1oidb"]
 texture = ExtResource("1_7umm5")
@@ -5137,17 +5137,16 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource("5_kxofx")]
-visible = false
-
 [node name="SansHehehehehe" type="AudioStreamPlayer2D" parent="HUD/BoxContainer/MarginContainer/DialogueContainer"]
 unique_name_in_owner = true
 playback_type = 2
 script = ExtResource("14_rgvsn")
-metadata/_custom_type_script = "uid://cty3hk6goownu"
 
 [node name="SansTimer" type="Timer" parent="HUD/BoxContainer/MarginContainer/DialogueContainer"]
 unique_name_in_owner = true
 one_shot = true
 
 [node name="Twink" type="Node" parent="HUD/BoxContainer/MarginContainer/DialogueContainer"]
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource("5_kxofx")]
+visible = false

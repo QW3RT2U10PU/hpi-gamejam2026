@@ -75,7 +75,7 @@ public abstract partial class Interactable : Area2D
 				FocusedInteractableBody = body;
 				break;
 		}
-		if (FocusedInteractable != null && FocusedInteractableBody is Player p) p.NotifyInteractable(true);
+		if (FocusedInteractable != null && FocusedInteractableBody is Player p && Interaction != InteractionType.NEVER) p.NotifyInteractable(true);
 	}
 
 	public void DisableInteractability(Node body)

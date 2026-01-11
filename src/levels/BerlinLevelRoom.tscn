@@ -5676,7 +5676,7 @@ shape = SubResource("WorldBoundaryShape2D_rsxo5")
 
 [node name="SceneSwitcher2" type="Area2D" parent="."]
 script = ExtResource("18_rsxo5")
-Loads = "uid://v5ubh80vchjw"
+Loads = "uid://dl3vvenxfhgil"
 Interaction = 3
 metadata/_custom_type_script = "uid://g71io881llkq"
 

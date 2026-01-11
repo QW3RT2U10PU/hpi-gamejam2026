@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbcfcoq5meela"]
+[gd_scene load_steps=2 format=3 uid="uid://rrluo3n258lv"]
 
 [ext_resource type="PackedScene" uid="uid://ux4yjd4o437b" path="res://src/levels/castle/room2.tscn" id="1_e7t0g"]
 

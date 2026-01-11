@@ -14,5 +14,3 @@ monitorable = false
 
 [node name="Shape" type="CollisionShape2D" parent="DialogueArea"]
 shape = SubResource("RectangleShape2D_bk23l")
-
-[connection signal="area_entered" from="DialogueArea" to="." method="TriggerDialogue" unbinds=1]

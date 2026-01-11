@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://gf3q54hingve"]
+[gd_scene load_steps=4 format=3 uid="uid://cf1mhitato3s1"]
 
 [ext_resource type="Script" uid="uid://r5ec6rtcr5nl" path="res://src/entities/Projectile.cs" id="1_dkvrg"]
+[ext_resource type="Texture2D" uid="uid://n05pnpsmhavc" path="res://res/sandball.png" id="2_ovegb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ovegb"]
+radius = 11.0
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource("1_dkvrg")
+Lifetime = 10.0
 Loads = "uid://difj88kcjy8k3"
 metadata/_custom_type_script = "uid://r5ec6rtcr5nl"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ovegb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 0)
+texture = ExtResource("2_ovegb")
