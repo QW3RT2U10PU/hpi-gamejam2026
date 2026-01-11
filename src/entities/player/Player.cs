@@ -8,6 +8,8 @@ public partial class Player : CharacterBody2D
 {
 	public static PackedScene Scene { get; } = GD.Load<PackedScene>("uid://l5ejvbu0pwmb");
 	public AnimatedSprite2D animatedSpritePlayer;
+
+	private bool dash;
 	public string currentAnimation;
 
 	[Export]
@@ -54,6 +56,7 @@ public partial class Player : CharacterBody2D
 			dashTimer.Start();
 			dashCooldown.Start();
 			dashState = DashState.ACTIVE;
+			dash = true;
 			animatedSpritePlayer.Play("BatDash");
 		}
 		
@@ -100,19 +103,17 @@ public partial class Player : CharacterBody2D
 
 		Velocity = velocity;
 
-	
-
-		if(velocity.X != 0 && velocity.Y == 0 && dashState != DashState.ACTIVE)
-		{
-			animatedSpritePlayer.Play("continueRunning");
-		}
-
-		else if(velocity.Y < 0 && dashState != DashState.ACTIVE)
+		if(velocity.Y < 0 && dashState != DashState.ACTIVE && !dash)
 		{
 			animatedSpritePlayer.Play("continueFalling");
 		}
 
-		else if(velocity.Y == 0 && velocity.X == 0 && dashState != DashState.ACTIVE)
+		else if(velocity.X != 0 && velocity.Y == 0 && dashState != DashState.ACTIVE && !dash)
+		{
+			animatedSpritePlayer.Play("continueRunning");
+		}
+
+		else if(velocity.Y == 0 && velocity.X == 0 && dashState != DashState.ACTIVE && !dash)
 		{
 			animatedSpritePlayer.Play("Idle");
 		}
@@ -137,6 +138,7 @@ public partial class Player : CharacterBody2D
 
 	public void DashCooldownExpired()
 	{
+		dash = false;
 		dashState &= ~DashState.COOLDOWN;
 	}
 
