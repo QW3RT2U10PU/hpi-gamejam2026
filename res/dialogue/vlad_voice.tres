@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="NoteSample" load_steps=3 format=3 uid="uid://b17xkoy6bfs1j"]
+
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="1_y6l00"]
+[ext_resource type="AudioStream" uid="uid://b31wv5bmoha1d" path="res://res/sfx/vlad.wav" id="2_y6l00"]
+
+[resource]
+script = ExtResource("1_y6l00")
+stream = ExtResource("2_y6l00")
+metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"

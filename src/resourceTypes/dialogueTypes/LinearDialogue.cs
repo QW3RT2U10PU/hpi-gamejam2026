@@ -6,11 +6,11 @@ public partial class LinearDialogue : Dialogue
 {
     [Export] public Godot.Collections.Array<Dialogue> Dialogues {get; set;} = [];
 
-    public override IEnumerator<(string, ICollection<string>)> GetEnumerator()
+    public override IEnumerator<(string, ICollection<string>, Dialogue)> GetEnumerator()
     {
         foreach (Dialogue d in Dialogues)
         {
-            foreach (var val in d) yield return val;
+            foreach ((var a, var b, var c) in d) yield return (a, b, c);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [GlobalClass]
-public abstract partial class Dialogue : Resource, IEnumerable<(string, ICollection<string>)>
+public abstract partial class Dialogue : Resource, IEnumerable<(string, ICollection<string>, Dialogue)>
 {
     /// <summary>
     /// Time for one character to be printed
@@ -23,7 +23,7 @@ public abstract partial class Dialogue : Resource, IEnumerable<(string, ICollect
     [Export]
     public virtual int Octave { get; set; }
     
-    public abstract IEnumerator<(string, ICollection<string>)> GetEnumerator();
+    public abstract IEnumerator<(string, ICollection<string>, Dialogue)> GetEnumerator();
     //{
     //    foreach (string s in lines) yield return s;
     //}

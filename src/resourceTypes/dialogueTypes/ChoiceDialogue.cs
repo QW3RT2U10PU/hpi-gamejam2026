@@ -8,11 +8,11 @@ public partial class ChoiceDialogue : Dialogue
 
     private Dialogue _choice;
 
-    public override IEnumerator<(string, ICollection<string>)> GetEnumerator()
+    public override IEnumerator<(string, ICollection<string>, Dialogue)> GetEnumerator()
     {
         DialogueContainer.ActiveDialogueContainer.HasChosen += Choose;
-        yield return (null, Options.Keys);
-        foreach (var val in _choice) yield return val;
+        yield return (null, Options.Keys, this);
+        foreach (var val in _choice) yield return (val.Item1, val.Item2, this);
         _choice = null;
     }
 

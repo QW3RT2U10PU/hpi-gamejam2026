@@ -11,12 +11,7 @@ public partial class DialogueContainer : PanelContainer
 
     public EventHandler<string> HasChosen;
 
-    private IEnumerator<(string, ICollection<string>)> _dialogueIterator;
-
-    private Resource _talkingSound;
-    private double _talkingTime = 0.025;
-    private String _note;
-    private int _octave;
+    private IEnumerator<(string, ICollection<string>, Dialogue)> _dialogueIterator;
 
     /// <summary>
     /// when false, blocks advancing to the next line (e.g. during choices)
@@ -34,11 +29,6 @@ public partial class DialogueContainer : PanelContainer
         {
             _dialogueIterator = value.GetEnumerator();
 
-            _talkingTime = value.TalkingTime;
-            _talkingSound = value.TalkingSound;
-            _note = value.Note;
-            _octave = value.Octave;
-
             Enable();
             NextLine();
         }
@@ -52,7 +42,7 @@ public partial class DialogueContainer : PanelContainer
             return;
         }
 
-        (string text, var choices) = _dialogueIterator.Current;
+        (string text, var choices, var dialogue) = _dialogueIterator.Current;
 
         if (choices != null)
         {
@@ -70,19 +60,19 @@ public partial class DialogueContainer : PanelContainer
         label.Text = text.Trim();
 
         var sampler = GetNode<GodotObject>("%SansHehehehehe");
-        sampler.Set("env_sustain", _talkingTime);
+        sampler.Set("env_sustain", dialogue.TalkingTime);
 
         timer.OneShot = true;
         timer.Timeout += () =>
         {
-            if (_note != "")
-                sampler.Call("x_play_note", _talkingSound, _note, _octave);
+            if (dialogue.Note != "" && dialogue.TalkingSound != null) 
+                sampler.Call("x_play_note", dialogue.TalkingSound, dialogue.Note, dialogue.Octave);
 
             label.VisibleCharacters += 1;
-            if (label.VisibleCharacters < text.Trim().Length) timer.Start(_talkingTime);
+            if (label.VisibleCharacters < text.Trim().Length) timer.Start(dialogue.TalkingTime);
         };
 
-        timer.Start(_talkingTime);
+        timer.Start(dialogue.TalkingTime);
     }
 
 
@@ -118,6 +108,7 @@ public partial class DialogueContainer : PanelContainer
         Visible = true;
         ProcessMode = ProcessModeEnum.Always;
         GetTree().Paused = true;
+        GetNode<RichTextLabel>("%Text").VisibleCharacters = 0;
     }
 
     public void Disable()

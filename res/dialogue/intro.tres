@@ -1,18 +1,49 @@
-[gd_resource type="Resource" script_class="DialogueLines" load_steps=5 format=3 uid="uid://dxd6b2tq1h0r5"]
+[gd_resource type="Resource" script_class="LinearDialogue" load_steps=10 format=3 uid="uid://dxd6b2tq1h0r5"]
 
 [ext_resource type="Script" uid="uid://dov3ckyw1f3wj" path="res://src/resourceTypes/dialogueTypes/DialogueLines.cs" id="1_gy2x4"]
-[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="1_ixdkp"]
-[ext_resource type="AudioStream" uid="uid://c105g5uem317r" path="res://res/sfx/dracula.wav" id="2_gh1c6"]
+[ext_resource type="Resource" uid="uid://cd6fxitw6wbyh" path="res://res/dialogue/dracula_voice.tres" id="1_ixdkp"]
+[ext_resource type="Script" uid="uid://dqr0oxp1v8sp2" path="res://src/resourceTypes/dialogueTypes/LinearDialogue.cs" id="1_rt2uu"]
+[ext_resource type="Resource" uid="uid://b17xkoy6bfs1j" path="res://res/dialogue/vlad_voice.tres" id="3_gh1c6"]
 
-[sub_resource type="Resource" id="Resource_6jfne"]
-script = ExtResource("1_ixdkp")
-stream = ExtResource("2_gh1c6")
-metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
-
-[resource]
+[sub_resource type="Resource" id="Resource_gh1c6"]
 script = ExtResource("1_gy2x4")
-Lines = Array[String](["[???] SON."])
+Lines = Array[String](["[???] CHILD."])
 TalkingTime = 0.5
-TalkingSound = SubResource("Resource_6jfne")
+TalkingSound = ExtResource("1_ixdkp")
 Note = "Eb"
 metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[sub_resource type="Resource" id="Resource_6jfne"]
+script = ExtResource("1_gy2x4")
+Lines = Array[String](["[Dracula] COME HAVE SOME GRILLED  HUMAN ON A STICK WITH ME.", "I COOKED IT IN MY PATENTED BLOOD SAUCE, JUST AS YOU LIKE IT."])
+TalkingSound = ExtResource("1_ixdkp")
+Note = "E"
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[sub_resource type="Resource" id="Resource_otr6o"]
+script = ExtResource("1_gy2x4")
+Lines = Array[String](["[Vlad] You are stupid. I hate you."])
+TalkingSound = ExtResource("3_gh1c6")
+Note = "D"
+Octave = 1
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[sub_resource type="Resource" id="Resource_ndm48"]
+script = ExtResource("1_gy2x4")
+Lines = Array[String](["[Dracula] Cease this insolence, Vladimir."])
+TalkingSound = ExtResource("1_ixdkp")
+Note = "Eb"
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[sub_resource type="Resource" id="Resource_fud70"]
+script = ExtResource("1_gy2x4")
+Lines = Array[String](["[Vlad] Why won't he understand me?", "[Vlahaj] ...", "[Vlad] Thanks, I needed that.", "[Vlad] You know, sometimes I dream of a far away land where everyone can be who they want to be.", "Where people are free to NOT have grilled human on a stick every day.", "[Vlahaj] ...", "[Vlad] What is this mystical 'Berlin' you speak of?", "[Vlahaj] ...", "[Vlad] I need to investigate this."])
+TalkingSound = ExtResource("3_gh1c6")
+Note = "D"
+Octave = 1
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[resource]
+script = ExtResource("1_rt2uu")
+Dialogues = Array[Object]([SubResource("Resource_gh1c6"), SubResource("Resource_6jfne"), SubResource("Resource_otr6o"), SubResource("Resource_ndm48"), SubResource("Resource_fud70")])
+metadata/_custom_type_script = "uid://dqr0oxp1v8sp2"
