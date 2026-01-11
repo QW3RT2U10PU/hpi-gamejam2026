@@ -5659,6 +5659,7 @@ visible = false
 [node name="SceneSwitcher" type="Area2D" parent="."]
 position = Vector2(2104, 320)
 script = ExtResource("18_rsxo5")
+Loads = "uid://dwo6i2m17nv1g"
 Interaction = 3
 metadata/_custom_type_script = "uid://g71io881llkq"
 

@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwo6i2m17nv1g"]
+
+[ext_resource type="Script" uid="uid://bytwtqkhbsd4h" path="res://src/ui/PauseMenu.cs" id="1_e7em6"]
+
+[node name="PauseMenu" type="HBoxContainer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_e7em6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BoxContainer2" type="BoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "You Won!"
+horizontal_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
