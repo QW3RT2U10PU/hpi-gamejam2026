@@ -9,7 +9,10 @@ size = Vector2(15.9, 30.95)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
 script = ExtResource("1_lowyb")
-Speed = 200.0
+Speed = 150.0
+DashSpeed = 4.0
+JumpStrength = 380.0
+AirDrag = 1.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7.525)
