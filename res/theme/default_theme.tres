@@ -1,12 +1,16 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://c3u1u7xi4rgyl"]
 
-[ext_resource type="FontFile" uid="uid://byvt6jgkjnsd" path="res://res/theme/monogram-extended.ttf" id="1_hm5we"]
+[ext_resource type="FontFile" uid="uid://byvt6jgkjnsd" path="res://res/theme/monogram-extended.ttf" id="1_dpkjh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmbyv"]
 bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 
 [resource]
-default_font = ExtResource("1_hm5we")
+default_font = ExtResource("1_dpkjh")
 default_font_size = 30
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_qmbyv")
