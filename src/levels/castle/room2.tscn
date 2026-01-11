@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bb5jsahwfbq3h" path="res://res/levels/Plan 3.png" id="5_hwerm"]
 [ext_resource type="Texture2D" uid="uid://cdjd6mlnbdpj4" path="res://res/levels/bg/orig_big.png" id="7_qecps"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hwerm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2v3m"]
 texture = ExtResource("2_oe5jg")
 91:2/0 = 0
 2:3/0 = 0
@@ -1800,7 +1800,7 @@ texture = ExtResource("2_oe5jg")
 72:71/0 = 0
 73:71/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylqh3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qx5vk"]
 texture = ExtResource("3_udpgm")
 1:1/0 = 0
 2:1/0 = 0
@@ -2313,13 +2313,13 @@ texture = ExtResource("3_udpgm")
 34:37/0 = 0
 35:37/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ogbn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_048sn"]
 texture = ExtResource("4_udpgm")
 
 [sub_resource type="TileSet" id="TileSet_8ogbn"]
-sources/0 = SubResource("TileSetAtlasSource_hwerm")
-sources/1 = SubResource("TileSetAtlasSource_ylqh3")
-sources/2 = SubResource("TileSetAtlasSource_8ogbn")
+sources/0 = SubResource("TileSetAtlasSource_h2v3m")
+sources/1 = SubResource("TileSetAtlasSource_qx5vk")
+sources/2 = SubResource("TileSetAtlasSource_048sn")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ylqh3"]
 normal = Vector2(1, 0)

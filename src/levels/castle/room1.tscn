@@ -2338,6 +2338,9 @@ position = Vector2(96, 184)
 [node name="Control" parent="HUD/BoxContainer" index="0"]
 size_flags_stretch_ratio = 2.5
 
+[node name="SansHehehehehe" parent="HUD/BoxContainer/MarginContainer/DialogueContainer" index="1"]
+playback_type = 0
+
 [node name="SceneSwitcher" type="Area2D" parent="." index="4"]
 position = Vector2(912, 176)
 script = ExtResource("4_udc7p")

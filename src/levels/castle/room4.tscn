@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://481bx1ovo7cf"]
+[gd_scene load_steps=13 format=4 uid="uid://481bx1ovo7cf"]
 
 [ext_resource type="PackedScene" uid="uid://c127jfuaaw3om" path="res://src/levels/level.tscn" id="1_th7sg"]
 [ext_resource type="Texture2D" uid="uid://boxa8erreu3fb" path="res://res/levels/main_lev_build.png" id="2_1mhg8"]
 [ext_resource type="Texture2D" uid="uid://b1en3upy6pbns" path="res://res/levels/other_and_decorative.png" id="3_ff12k"]
 [ext_resource type="Texture2D" uid="uid://caoq2e3sv7cg5" path="res://res/levels/bg/ironmaiden1.png" id="4_u02m8"]
+[ext_resource type="Script" uid="uid://g71io881llkq" path="res://src/entities/SceneSwitcher.cs" id="5_tk8hx"]
+[ext_resource type="Script" uid="uid://c8bxeuburhivu" path="res://src/levels/castle/Respawn.cs" id="6_2b0b2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xke1e"]
 texture = ExtResource("2_1mhg8")
@@ -2404,6 +2406,12 @@ sources/0 = SubResource("TileSetAtlasSource_xke1e")
 sources/1 = SubResource("TileSetAtlasSource_c5qyh")
 sources/2 = SubResource("TileSetAtlasSource_i6ui4")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2b0b2"]
+size = Vector2(4, 208)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdc4y"]
+size = Vector2(184.24242, 12.4242325)
+
 [node name="Room4" instance=ExtResource("1_th7sg")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="0"]
@@ -2415,3 +2423,24 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAKADUAAAAAAAEAAQAKADYAAAAAAAIAAQAKADc
 
 [node name="Player" parent="." index="2"]
 position = Vector2(176, 8)
+
+[node name="SceneSwitcher2" type="Area2D" parent="." index="4"]
+script = ExtResource("5_tk8hx")
+Loads = "uid://ckhi23r71tjuw"
+Interaction = 0
+metadata/_custom_type_script = "uid://g71io881llkq"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SceneSwitcher2" index="0"]
+position = Vector2(1190, 120)
+shape = SubResource("RectangleShape2D_2b0b2")
+
+[node name="Area2D" type="Area2D" parent="." index="5"]
+position = Vector2(-2, -5)
+script = ExtResource("6_2b0b2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(289.99997, 352.5)
+scale = Vector2(3.3, 3.3)
+shape = SubResource("RectangleShape2D_pdc4y")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="ResetPlayer"]
