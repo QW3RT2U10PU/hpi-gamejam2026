@@ -1,27 +1,25 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 [GlobalClass]
 public partial class ChoiceDialogue : Dialogue
 {
     [Export] public Godot.Collections.Dictionary<string, Dialogue> Options = [];
 
-    private Dialogue choice = null;
+    private Dialogue _choice;
 
     public override IEnumerator<(string, ICollection<string>)> GetEnumerator()
     {
-        DialogueContainer.ActiveDialogueContainer.HasChoosen += Choose;
+        DialogueContainer.ActiveDialogueContainer.HasChosen += Choose;
         yield return (null, Options.Keys);
-        foreach (var val in choice) yield return val;
-        choice = null;
+        foreach (var val in _choice) yield return val;
+        _choice = null;
     }
 
     public void Choose(object sender, string c)
     {
-        choice = Options[c];
-        GD.Print(choice);
-        DialogueContainer.ActiveDialogueContainer.HasChoosen -= Choose;
+        _choice = Options[c];
+        GD.Print(_choice);
+        DialogueContainer.ActiveDialogueContainer.HasChosen -= Choose;
     }
 }

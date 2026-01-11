@@ -14,6 +14,10 @@ config/name="GameJam"
 run/main_scene="res://src/ui/startMenu.tscn"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 
+[autoload]
+
+NoteValue="*res://addons/SimpleSampler/note_value.gd"
+
 [display]
 
 window/size/viewport_width=512
@@ -23,6 +27,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="GameJam"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SimpleSampler/plugin.cfg")
 
 [file_customization]
 

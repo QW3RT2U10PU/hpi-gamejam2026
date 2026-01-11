@@ -2,87 +2,134 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public partial class DialogueContainer : PanelContainer
 {
-  public static DialogueContainer ActiveDialogueContainer {get; private set;} = null;
+    public static DialogueContainer ActiveDialogueContainer { get; private set; }
 
-  public EventHandler<string> HasChoosen;
+    public EventHandler<string> HasChosen;
 
-  private IEnumerator<(string, ICollection<string>)> dialogueIterator = null;
+    private IEnumerator<(string, ICollection<string>)> _dialogueIterator;
 
-  /// <summary>
-  /// when false, blocks advancing to the next line (e. g. during choices)
-  /// </summary>
-  private bool canContinue = true;
+    private Resource _talkingSound;
+    private double _talkingTime = 0.025;
+    private String _note;
+    private int _octave;
 
-  public Dialogue CurrentDialogue {set
+    /// <summary>
+    /// when false, blocks advancing to the next line (e.g. during choices)
+    /// </summary>
+    private bool _canContinue = true;
+
+    public Dialogue CurrentDialogue
     {
-      dialogueIterator = value.GetEnumerator();
-      Enable();
-      NextLine();
-    }
-  }
+        set
+        {
+            _dialogueIterator = value.GetEnumerator();
+            
+            _talkingTime = value.TalkingTime;
+            _talkingSound = value.TalkingSound;
+            _note = value.Note;
+            _octave = value.Octave;
 
-	private void NextLine()
-  {
-    if (dialogueIterator.MoveNext())
+            Enable();
+            NextLine();
+        }
+    }
+
+    private void NextLine()
     {
-      (string text, var choice) = dialogueIterator.Current;
-      if (choice == null) GetNode<RichTextLabel>("%Text").Text = text;
-      else
-      {
-        canContinue = false;
-        LoadChoices(choice);
-      }
+        if (!_dialogueIterator.MoveNext())
+        {
+            Disable();
+            return;
+        }
+
+        (string text, var choices) = _dialogueIterator.Current;
+
+        if (choices != null)
+        {
+            _canContinue = false;
+            LoadChoices(choices);
+            return;
+        }
+
+        var timer = GetNode<Timer>("%SansTimer");
+        var label = GetNode<RichTextLabel>("%Text");
+        
+        var characterMatch = Regex.Match(text, @"^\[([^\]]+)\]");
+
+        label.VisibleCharacters = characterMatch.Success ? characterMatch.Length : 0;
+        label.Text = text.Trim();
+
+        var sampler = GetNode<GodotObject>("%SansHehehehehe");
+        sampler.Set("env_sustain", _talkingTime);
+        
+        timer.OneShot = true;
+        timer.Timeout += () =>
+        {
+            if (_note != "")
+                sampler.Call("x_play_note", _talkingSound, _note, _octave);
+            
+            label.VisibleCharacters += 1;
+            if (label.VisibleCharacters < text.Trim().Length) timer.Start(_talkingTime);
+        };
+        
+        timer.Start(_talkingTime);
     }
-    else Disable();
-  }
 
 
-  public void LoadChoices(ICollection<string> options)
-  {
-    GetNode<TabContainer>("%TextOrChoice").CurrentTab = 1;
-    var choiceContainer = GetNode<Container>("%ChoiceOptions");
-    foreach (Node n in choiceContainer.GetChildren()) n.QueueFree();
-    foreach (string s in options.Order())
+    public void LoadChoices(ICollection<string> options)
     {
-      Button choice = new();
-      choice.Text = s;
-      choice.Pressed += () => {
-        HasChoosen?.Invoke(this, s);
-        foreach (Node n in choiceContainer.GetChildren()) n.QueueFree();
-        GetNode<TabContainer>("%TextOrChoice").CurrentTab = 0;
-        canContinue = true;
-        NextLine();
-      };
-      choiceContainer.AddChild(choice);
+        GetNode<TabContainer>("%TextOrChoice").CurrentTab = 1;
+        var choiceContainer = GetNode<Container>("%ChoiceOptions");
+        foreach (var n in choiceContainer.GetChildren()) n.QueueFree();
+        foreach (var s in options.Order())
+        {
+            Button choice = new();
+            choice.Text = s;
+            choice.Pressed += () =>
+            {
+                HasChosen?.Invoke(this, s);
+                foreach (Node n in choiceContainer.GetChildren()) n.QueueFree();
+                GetNode<TabContainer>("%TextOrChoice").CurrentTab = 0;
+                _canContinue = true;
+                NextLine();
+            };
+            choiceContainer.AddChild(choice);
+        }
     }
-  }
 
 
-  public void Enable()
-  {
-    ActiveDialogueContainer = this;
-    Visible = true;
-    ProcessMode = ProcessModeEnum.Always;
-    GetTree().Paused = true;
-  }
+    public void Enable()
+    {
+        ActiveDialogueContainer = this;
+        Visible = true;
+        ProcessMode = ProcessModeEnum.Always;
+        GetTree().Paused = true;
+    }
 
-  public void Disable()
-  {
-    ActiveDialogueContainer = null;
-    Visible = false;
-    ProcessMode = ProcessModeEnum.Disabled;
-    GetTree().Paused = false;
-  }
+    public void Disable()
+    {
+        ActiveDialogueContainer = null;
+        Visible = false;
+        ProcessMode = ProcessModeEnum.Disabled;
+        GetTree().Paused = false;
+    }
 
-  public override void _Input(InputEvent @event)
-  {
-	  if (@event.IsActionPressed("interact"))
-	  {
-      GetViewport().SetInputAsHandled();
-      if (canContinue) NextLine();
-	  }
-  }
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("interact"))
+        {
+            GetViewport().SetInputAsHandled();
+            if (_canContinue) NextLine();
+        }
+    }
+
+    public override void _Ready()
+    {
+    }
 }
