@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://c127jfuaaw3om" path="res://src/levels/level.tscn" id="1_dqaci"]
 [ext_resource type="Texture2D" uid="uid://boxa8erreu3fb" path="res://res/levels/main_lev_build.png" id="2_11865"]
 [ext_resource type="Texture2D" uid="uid://b1en3upy6pbns" path="res://res/levels/other_and_decorative.png" id="3_axufi"]
-[ext_resource type="Texture2D" uid="uid://grgne3mlm4hb" path="res://res/The Sidescroller's Dungeon Tiles 16x16.png" id="4_33qho"]
-[ext_resource type="Texture2D" uid="uid://dk36lqk0p2820" path="res://res/Tilesetv3.png" id="5_0yh61"]
+[ext_resource type="Texture2D" uid="uid://grgne3mlm4hb" path="res://res/assets/The Sidescroller's Dungeon Tiles 16x16.png" id="4_33qho"]
+[ext_resource type="Texture2D" uid="uid://dk36lqk0p2820" path="res://res/assets/Darkest Dungeon.png" id="5_0yh61"]
 [ext_resource type="Texture2D" uid="uid://cdjd6mlnbdpj4" path="res://res/levels/bg/orig_big.png" id="6_mylj1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y21i1"]
