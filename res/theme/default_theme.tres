@@ -1,6 +1,60 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c3u1u7xi4rgyl"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://c3u1u7xi4rgyl"]
 
+[ext_resource type="Texture2D" uid="uid://c6nc7f40q1qy7" path="res://res/theme/button.png" id="1_dn5up"]
 [ext_resource type="FontFile" uid="uid://byvt6jgkjnsd" path="res://res/theme/monogram-extended.ttf" id="1_dpkjh"]
+[ext_resource type="Texture2D" uid="uid://dkakv2mpu2sjy" path="res://res/theme/button_pressed.png" id="2_ibpyg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ibpyg"]
+texture = ExtResource("1_dn5up")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0, 0, 0.2509804, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ibpyg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8752t"]
+texture = ExtResource("1_dn5up")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0, 0, 0.3764706, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ra0et"]
+texture = ExtResource("2_ibpyg")
+texture_margin_left = 4.0
+texture_margin_top = 8.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0, 0, 0.3764706, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52bb5"]
+texture = ExtResource("1_dn5up")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0, 0, 0.2509804, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f3y3k"]
+texture = ExtResource("2_ibpyg")
+texture_margin_left = 4.0
+texture_margin_top = 8.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0, 0, 0.3764706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmbyv"]
 bg_color = Color(0, 0, 0, 1)
@@ -12,5 +66,11 @@ border_color = Color(1, 1, 1, 1)
 
 [resource]
 default_font = ExtResource("1_dpkjh")
-default_font_size = 30
+default_font_size = 32
+Button/styles/disabled = SubResource("StyleBoxTexture_ibpyg")
+Button/styles/focus = SubResource("StyleBoxEmpty_ibpyg")
+Button/styles/hover = SubResource("StyleBoxTexture_8752t")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_ra0et")
+Button/styles/normal = SubResource("StyleBoxTexture_52bb5")
+Button/styles/pressed = SubResource("StyleBoxTexture_f3y3k")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_qmbyv")
