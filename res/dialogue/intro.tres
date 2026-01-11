@@ -1,8 +1,18 @@
-[gd_resource type="Resource" script_class="DialogueLines" load_steps=2 format=3 uid="uid://dxd6b2tq1h0r5"]
+[gd_resource type="Resource" script_class="DialogueLines" load_steps=5 format=3 uid="uid://dxd6b2tq1h0r5"]
 
 [ext_resource type="Script" uid="uid://dov3ckyw1f3wj" path="res://src/resourceTypes/dialogueTypes/DialogueLines.cs" id="1_gy2x4"]
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="1_ixdkp"]
+[ext_resource type="AudioStream" uid="uid://c105g5uem317r" path="res://res/sfx/dracula.wav" id="2_gh1c6"]
+
+[sub_resource type="Resource" id="Resource_6jfne"]
+script = ExtResource("1_ixdkp")
+stream = ExtResource("2_gh1c6")
+metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
 
 [resource]
 script = ExtResource("1_gy2x4")
-Lines = Array[String](["[???] SON. "])
+Lines = Array[String](["[???] SON."])
+TalkingTime = 0.5
+TalkingSound = SubResource("Resource_6jfne")
+Note = "Eb"
 metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
