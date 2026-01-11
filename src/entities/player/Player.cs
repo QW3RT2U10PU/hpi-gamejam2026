@@ -111,4 +111,9 @@ public partial class Player : CharacterBody2D
 			Interactable.FocusedInteractable?.Interact(Interactable.FocusedInteractableBody);
 		}
 	}
+
+	public void NotifyInteractable(bool interactable)
+	{
+		GetNode<InteractionIndicator>("%InteractionIndicator").Enabled = interactable;
+	}
 }

@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://blemad8rwch2f"]
+
+[ext_resource type="PackedScene" uid="uid://ckvdiy5cdo4kp" path="res://src/levels/Encounter.tscn" id="1_7dvlo"]
+[ext_resource type="Script" uid="uid://dov3ckyw1f3wj" path="res://src/resourceTypes/dialogueTypes/DialogueLines.cs" id="2_5gun3"]
+[ext_resource type="PackedScene" uid="uid://gf3q54hingve" path="res://src/levels/castle/fightProjectile.tscn" id="3_mjfn6"]
+
+[sub_resource type="Resource" id="Resource_ohid6"]
+script = ExtResource("2_5gun3")
+Lines = Array[String](["You will not kill me"])
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[sub_resource type="Resource" id="Resource_flbag"]
+script = ExtResource("2_5gun3")
+Lines = Array[String](["Almost done"])
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[sub_resource type="Resource" id="Resource_t3v61"]
+script = ExtResource("2_5gun3")
+Lines = Array[String](["...I died"])
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[sub_resource type="Resource" id="Resource_i6b2f"]
+script = ExtResource("2_5gun3")
+Lines = Array[String](["Wanna fight?"])
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
+
+[node name="Fight" instance=ExtResource("1_7dvlo")]
+
+[node name="Enemy" parent="." index="3"]
+DialoguesBetweenAttacks = Array[Object]([SubResource("Resource_ohid6"), SubResource("Resource_flbag"), SubResource("Resource_t3v61")])
+SpawnsProjectile = ExtResource("3_mjfn6")
+PostDefeatScene = "uid://difj88kcjy8k3"
+NpcDialogue = SubResource("Resource_i6b2f")

@@ -1,10 +1,9 @@
+using GameJam;
 using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Godot.Collections;
-using Array = Godot.Collections.Array;
 
 public partial class DialogueContainer : PanelContainer
 {
@@ -24,12 +23,17 @@ public partial class DialogueContainer : PanelContainer
     /// </summary>
     private bool _canContinue = true;
 
+    /// <summary>
+    /// stores the player that triggered the dialogue IF it has an active interaction indicator, null else
+    /// </summary>
+    private Player storedInteractor = null;
+
     public Dialogue CurrentDialogue
     {
         set
         {
             _dialogueIterator = value.GetEnumerator();
-            
+
             _talkingTime = value.TalkingTime;
             _talkingSound = value.TalkingSound;
             _note = value.Note;
@@ -59,7 +63,7 @@ public partial class DialogueContainer : PanelContainer
 
         var timer = GetNode<Timer>("%SansTimer");
         var label = GetNode<RichTextLabel>("%Text");
-        
+
         var characterMatch = Regex.Match(text, @"^\[([^\]]+)\]");
 
         label.VisibleCharacters = characterMatch.Success ? characterMatch.Length : 0;
@@ -67,17 +71,17 @@ public partial class DialogueContainer : PanelContainer
 
         var sampler = GetNode<GodotObject>("%SansHehehehehe");
         sampler.Set("env_sustain", _talkingTime);
-        
+
         timer.OneShot = true;
         timer.Timeout += () =>
         {
             if (_note != "")
                 sampler.Call("x_play_note", _talkingSound, _note, _octave);
-            
+
             label.VisibleCharacters += 1;
             if (label.VisibleCharacters < text.Trim().Length) timer.Start(_talkingTime);
         };
-        
+
         timer.Start(_talkingTime);
     }
 
@@ -106,6 +110,10 @@ public partial class DialogueContainer : PanelContainer
 
     public void Enable()
     {
+        Player p = GetOwner<Level>().GetNode<Player>("%Player");
+        storedInteractor = p.GetNode<InteractionIndicator>("InteractionIndicator").Enabled ? p : null;
+        p.NotifyInteractable(false);
+
         ActiveDialogueContainer = this;
         Visible = true;
         ProcessMode = ProcessModeEnum.Always;
@@ -114,6 +122,7 @@ public partial class DialogueContainer : PanelContainer
 
     public void Disable()
     {
+        storedInteractor?.NotifyInteractable(true);
         ActiveDialogueContainer = null;
         Visible = false;
         ProcessMode = ProcessModeEnum.Disabled;
@@ -127,9 +136,5 @@ public partial class DialogueContainer : PanelContainer
             GetViewport().SetInputAsHandled();
             if (_canContinue) NextLine();
         }
-    }
-
-    public override void _Ready()
-    {
     }
 }

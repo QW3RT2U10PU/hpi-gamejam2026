@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://l5ejvbu0pwmb"]
+[gd_scene load_steps=7 format=3 uid="uid://l5ejvbu0pwmb"]
 
-[ext_resource type="Script" uid="uid://d1f8cqhf3sfc4" path="res://src/entities/Player.cs" id="1_lowyb"]
+[ext_resource type="Script" uid="uid://d1f8cqhf3sfc4" path="res://src/entities/player/Player.cs" id="1_lowyb"]
 [ext_resource type="Texture2D" uid="uid://bukqbasjprqww" path="res://res/assets/player.png" id="2_gmfve"]
+[ext_resource type="Texture2D" uid="uid://bxcc2iijv48wv" path="res://res/assets/icons/Keys.png" id="3_o5qvw"]
+[ext_resource type="Script" uid="uid://bj0lrpoj6fmdl" path="res://src/entities/player/InteractionIndicator.cs" id="4_wrxq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehvfd"]
 size = Vector2(15.9, 30.95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqcqj"]
+atlas = ExtResource("3_o5qvw")
+region = Rect2(64, 32, 16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
@@ -31,5 +37,17 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="InteractionIndicator" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0.5, -40)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_lqcqj")
+script = ExtResource("4_wrxq6")
+
+[node name="BlinkTimer" type="Timer" parent="InteractionIndicator"]
+wait_time = 0.5
+
 [connection signal="timeout" from="dashTimer" to="." method="DashExpired"]
 [connection signal="timeout" from="dashCooldown" to="." method="DashCooldownExpired"]
+[connection signal="timeout" from="InteractionIndicator/BlinkTimer" to="InteractionIndicator" method="togglePressed"]

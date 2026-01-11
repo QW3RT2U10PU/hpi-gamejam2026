@@ -1,3 +1,4 @@
+using GameJam;
 using Godot;
 using System;
 using System.Threading.Tasks.Dataflow;
@@ -57,28 +58,32 @@ public abstract partial class Interactable : Area2D
 			case InteractionType.ALWAYS:
 				FocusedInteractable = this;
 				FocusedInteractableBody = body;
-				Interact(body);
+				CallDeferred(MethodName.Interact, body);
 				break;
 			case InteractionType.ONCE_AND_INTERACTABLE:
 				FocusedInteractable = this;
 				FocusedInteractableBody = body;
 				Interaction = InteractionType.INTERACTABLE;
-				Interact(body);
+				CallDeferred(MethodName.Interact, body);
 				break;
 			case InteractionType.ONCE:
 				Interaction = InteractionType.NEVER;
-				Interact(body);
+				CallDeferred(MethodName.Interact, body);
 				break;
 			case InteractionType.INTERACTABLE:
 				FocusedInteractable = this;
 				FocusedInteractableBody = body;
 				break;
 		}
+		if (FocusedInteractable != null && FocusedInteractableBody is Player p) p.NotifyInteractable(true);
 	}
 
 	public void DisableInteractability(Node body)
 	{
-		if (FocusedInteractable == this) FocusedInteractable = null;
+		if (FocusedInteractable == this) {
+			FocusedInteractable = null;
+			if (FocusedInteractableBody is Player p) p.NotifyInteractable(false);
+		}
 	}
 
 	/// <summary>

@@ -6,10 +6,10 @@ using System;
 public partial class Npc : Interactable
 {
 	[Export]
-	public Dialogue NpcDialogue {get; private set;}
+	public virtual Dialogue NpcDialogue {get; protected set;}
 
     public override void Interact(Node body)
     {
-		GetParent<Level>().StartDialogue(NpcDialogue);
+		  GetParent<Level>().StartDialogue(NpcDialogue);
     }
 }
