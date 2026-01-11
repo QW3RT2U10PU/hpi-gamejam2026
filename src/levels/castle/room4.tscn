@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://481bx1ovo7cf"]
+[gd_scene load_steps=14 format=4 uid="uid://481bx1ovo7cf"]
 
 [ext_resource type="PackedScene" uid="uid://c127jfuaaw3om" path="res://src/levels/level.tscn" id="1_th7sg"]
 [ext_resource type="Texture2D" uid="uid://boxa8erreu3fb" path="res://res/levels/main_lev_build.png" id="2_1mhg8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://caoq2e3sv7cg5" path="res://res/levels/bg/ironmaiden1.png" id="4_u02m8"]
 [ext_resource type="Script" uid="uid://g71io881llkq" path="res://src/entities/SceneSwitcher.cs" id="5_tk8hx"]
 [ext_resource type="Script" uid="uid://c8bxeuburhivu" path="res://src/levels/castle/Respawn.cs" id="6_2b0b2"]
+[ext_resource type="Texture2D" uid="uid://cdjd6mlnbdpj4" path="res://res/levels/bg/orig_big.png" id="7_pdc4y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xke1e"]
 texture = ExtResource("2_1mhg8")
@@ -2439,5 +2440,16 @@ script = ExtResource("6_2b0b2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("WorldBoundaryShape2D_pdc4y")
+
+[node name="Parallax2D" type="Parallax2D" parent="." index="6"]
+z_index = -2
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(-200, -800)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D" index="0"]
+modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
+z_index = -1
+texture = ExtResource("7_pdc4y")
+centered = false
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="ResetPlayer"]

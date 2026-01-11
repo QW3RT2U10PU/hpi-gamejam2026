@@ -13,6 +13,7 @@ config_version=5
 config/name="GameJam"
 run/main_scene="res://src/ui/startMenu.tscn"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 
 [autoload]
 
