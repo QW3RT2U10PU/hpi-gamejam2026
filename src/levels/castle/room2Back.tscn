@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbcfcoq5meela"]
+
+[ext_resource type="PackedScene" uid="uid://ux4yjd4o437b" path="res://src/levels/castle/room2.tscn" id="1_e7t0g"]
+
+[node name="Room2Back" instance=ExtResource("1_e7t0g")]
+
+[node name="Player" parent="." index="2"]
+position = Vector2(1624, 200)
