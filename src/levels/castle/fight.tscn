@@ -27,7 +27,11 @@ metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
 [node name="Fight" instance=ExtResource("1_7dvlo")]
 
 [node name="Enemy" parent="." index="3"]
+AttackTime = 12
+AttackSpeed = 3.0
 DialoguesBetweenAttacks = Array[Object]([SubResource("Resource_ohid6"), SubResource("Resource_flbag"), SubResource("Resource_t3v61")])
 SpawnsProjectile = ExtResource("3_mjfn6")
+SpawnRadius = 400.0
 PostDefeatScene = "uid://difj88kcjy8k3"
 NpcDialogue = SubResource("Resource_i6b2f")
+Interaction = 3
