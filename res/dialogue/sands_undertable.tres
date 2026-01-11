@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LinearDialogue" load_steps=2 format=3 uid="uid://c8utgcwhtbl3y"]
+
+[ext_resource type="Script" uid="uid://dqr0oxp1v8sp2" path="res://src/resourceTypes/dialogueTypes/LinearDialogue.cs" id="1_mnvyq"]
+
+[resource]
+script = ExtResource("1_mnvyq")
+Dialogues = null
+metadata/_custom_type_script = "uid://dqr0oxp1v8sp2"
