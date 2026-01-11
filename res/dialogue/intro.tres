@@ -1,14 +1,8 @@
-[gd_resource type="Resource" script_class="LinearDialogue" load_steps=4 format=3 uid="uid://cvpi7c0ko3l0v"]
+[gd_resource type="Resource" script_class="DialogueLines" load_steps=2 format=3 uid="uid://dxd6b2tq1h0r5"]
 
 [ext_resource type="Script" uid="uid://dov3ckyw1f3wj" path="res://src/resourceTypes/dialogueTypes/DialogueLines.cs" id="1_gy2x4"]
-[ext_resource type="Script" uid="uid://dqr0oxp1v8sp2" path="res://src/resourceTypes/dialogueTypes/LinearDialogue.cs" id="2_ixdkp"]
-
-[sub_resource type="Resource" id="Resource_gh1c6"]
-script = ExtResource("1_gy2x4")
-Lines = Array[String](["[FATHER] abc"])
-metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
 
 [resource]
-script = ExtResource("2_ixdkp")
-Dialogues = Array[Object]([SubResource("Resource_gh1c6")])
-metadata/_custom_type_script = "uid://dqr0oxp1v8sp2"
+script = ExtResource("1_gy2x4")
+Lines = Array[String](["[???] SON. "])
+metadata/_custom_type_script = "uid://dov3ckyw1f3wj"
