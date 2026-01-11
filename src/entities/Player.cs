@@ -60,7 +60,7 @@ public partial class Player : CharacterBody2D
 		else {
 			remainingCoyoteTime -= delta;
 			currentAcceleration /= AirDrag;
-			if (dashState != DashState.ACTIVE)
+			if (dashState != DashState.ACTIVE && remainingCoyoteTime <= 0)
 			{
 				velocity += GetGravity() * (float)delta;
 			}
@@ -73,6 +73,7 @@ public partial class Player : CharacterBody2D
 		if (direction.Y < 0 && remainingCoyoteTime > 0)
 		{
 			velocity.Y = -JumpStrength;
+			remainingCoyoteTime = 0;
 		}
 
 
