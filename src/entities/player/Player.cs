@@ -7,6 +7,8 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
 	public static PackedScene Scene { get; } = GD.Load<PackedScene>("uid://l5ejvbu0pwmb");
+	public AnimatedSprite2D animatedSpritePlayer;
+	public string currentAnimation;
 
 	[Export]
 	public float Speed {get; set;} = 300.0f;
@@ -31,6 +33,8 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		animatedSpritePlayer = GetNode<AnimatedSprite2D>("playerSprite2D");
+
 		Timer dashTimer = GetNode<Timer>("dashTimer");
 		Timer dashCooldown = GetNode<Timer>("dashCooldown");
 
@@ -50,8 +54,11 @@ public partial class Player : CharacterBody2D
 			dashTimer.Start();
 			dashCooldown.Start();
 			dashState = DashState.ACTIVE;
+			animatedSpritePlayer.Play("BatDash");
 		}
 		
+		animatedSpritePlayer.FlipH = direction < Vector2.Zero;
+
 		if (IsOnFloor())
 		{
 			remainingCoyoteTime = CoyoteTime;
@@ -63,6 +70,8 @@ public partial class Player : CharacterBody2D
 			if (dashState != DashState.ACTIVE && remainingCoyoteTime <= 0)
 			{
 				velocity += GetGravity() * (float)delta;
+				
+
 			}
 			else
 			{
@@ -90,7 +99,35 @@ public partial class Player : CharacterBody2D
 
 
 		Velocity = velocity;
+
+	
+
+		if(velocity.X != 0 && velocity.Y == 0 && dashState != DashState.ACTIVE)
+		{
+			animatedSpritePlayer.Play("continueRunning");
+		}
+
+		else if(velocity.Y < 0 && dashState != DashState.ACTIVE)
+		{
+			animatedSpritePlayer.Play("continueFalling");
+		}
+
+		else if(velocity.Y == 0 && velocity.X == 0 && dashState != DashState.ACTIVE)
+		{
+			animatedSpritePlayer.Play("Idle");
+		}
+
 		MoveAndSlide();
+	}
+
+	public void continueFalling()
+	{
+		
+	}
+
+	public void continueRunning()
+	{
+		
 	}
 
 	public void DashExpired()
